@@ -24,12 +24,11 @@ SWF::Editor - SWF file editor
   use SWF::Editor;
 
   my $swf = SWF::Editor->new( file => '/path/to/file.swf' );
-  $swf->insert_tag(
-      pos => 2, 
-      tag => SWF::Editor::Tag::DoAction::SetVariables->new (
-          hoge => 'fuga',
-          foo  => [qw/ bar baz/],
-      ),
+  $swf->insert_tag( 
+    2 =>  SWF::Editor::Tag::DoAction::SetVariables->new(
+              hoge => 'fuga',
+              foo  => [qw/ bar baz/],
+          )
   );
   $swf->get_binary;
 
@@ -114,18 +113,18 @@ sub parse {
 }
 
 sub insert_tag {
-    args my $self,
-         my $pos => { isa => 'Int' },
-         my $tag => { isa => 'SWF::Editor::Tag' };
+    args_pos my $self, 
+             my $pos => { isa => 'Int' },
+             my $tag => { isa => 'SWF::Editor::Tag' };
 
     splice @{$self->tags}, $pos,0,$tag;
 
 }
 
 sub replace_tag {
-    args my $self,
-         my $pos => { isa => 'Int' },
-         my $tag => { isa => 'SWF::Editor::Tag' };
+    args_pos my $self, 
+             my $pos => { isa => 'Int' },
+             my $tag => { isa => 'SWF::Editor::Tag' };
     $self->tags->[$pos] = $tag;
 }
 
