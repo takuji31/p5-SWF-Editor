@@ -24,7 +24,13 @@ SWF::Editor - SWF file editor
   use SWF::Editor;
 
   my $swf = SWF::Editor->new( file => '/path/to/file.swf' );
-  $swf->replace_image( 1, '/file/to/image.png');
+  $swf->replace_tag(
+      pos => 2, 
+      tag => SWF::Editor::Tag::DoAction::SetVariables->new (
+          hoge => 'fuga',
+          foo  => [qw/ bar baz/],
+      ),
+  );
   $swf->get_binary;
 
 =head1 DESCRIPTION
