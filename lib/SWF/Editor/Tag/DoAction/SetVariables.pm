@@ -87,12 +87,12 @@ sub compile_array {
 
 sub compile_string {
     my ( $self, $value ) = @_;
-    return join '', $ACTION_CODE{Push},pack('v', length($value)+2), $TYPE{string}, $value, $NULL;
+    return join '', $ACTION_CODE{Push}, pack( 'v', length($value) + 2 ), $TYPE{string}, $value, $NULL;
 }
 
 sub compile_integer {
     my ( $self, $value ) = @_;
-    return join '',  $ACTION_CODE{Push},pack('v', 5), $TYPE{integer}, pack( 'V', $value );
+    return join '', $ACTION_CODE{Push}, pack( 'v', 5 ), $TYPE{integer}, pack( 'V', $value );
 }
 
 __PACKAGE__->meta->make_immutable;
