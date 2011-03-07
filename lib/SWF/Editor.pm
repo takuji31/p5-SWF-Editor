@@ -113,10 +113,6 @@ sub parse {
 
 }
 
-sub replace_image {
-    my $self = shift;
-}
-
 sub insert_tag {
     args my $self,
          my $pos => { isa => 'Int' },
