@@ -24,7 +24,7 @@ SWF::Editor - SWF file editor
   use SWF::Editor;
 
   my $swf = SWF::Editor->new( file => '/path/to/file.swf' );
-  $swf->replace_tag(
+  $swf->insert_tag(
       pos => 2, 
       tag => SWF::Editor::Tag::DoAction::SetVariables->new (
           hoge => 'fuga',
