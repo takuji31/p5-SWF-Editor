@@ -8,3 +8,4 @@ __DATA__
 Nishibayashi Takuji
 takuji {at} senchan.jp
 SWF::Editor
+DoAction
