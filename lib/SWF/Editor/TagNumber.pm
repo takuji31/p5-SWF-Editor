@@ -3,9 +3,12 @@ use strict;
 use warnings;
 
 =pod
-=head1 TagNo
 
-from http://hkpr.info/flash/swf/index.php?%E3%82%BF%E3%82%B0%E7%95%AA%E5%8F%B7%E9%A0%86%E7%B4%A2%E5%BC%95
+=encoding utf8
+
+=head1 DESCRIPTION
+
+These are tag code number. copied from http://hkpr.info/flash/swf/index.php?%E3%82%BF%E3%82%B0%E7%95%AA%E5%8F%B7%E9%A0%86%E7%B4%A2%E5%BC%95
 
 =cut
 our $End                          = 0;
