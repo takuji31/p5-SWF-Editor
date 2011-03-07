@@ -102,7 +102,7 @@ __DATA__
 
 =head1 NAME
 
-SWF::Editor::Tag::DoAction::SetVariables - DoAction tag for set valiables
+SWF::Editor::Tag::DoAction::SetVariables - DoAction tag for set variables
 
 =head1 SYNOPSIS
   use SWF::Editor::Tag::DoAction::SetVariables;
