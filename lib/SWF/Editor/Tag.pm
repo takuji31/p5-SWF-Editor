@@ -10,7 +10,7 @@ has type       => ( is => "rw" );
 has object_id  => ( is => "rw", isa => 'Int', lazy_build => 1 );
 has binary     => ( is => "rw", lazy_build => 1 );
 
-sub as_binary {
+sub get_binary {
     my $self = shift;
 
     if ( is_long_header($self->header) ) {

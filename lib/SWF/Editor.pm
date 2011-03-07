@@ -145,7 +145,7 @@ sub get_binary {
     my @tags = @{ $self->tags };
 
     # rebuild data
-    my $raw = join("", $self->header, map { $_->as_binary } @tags);
+    my $raw = join("", $self->header, map { $_->get_binary } @tags);
     # calculate data length
     substr( $raw, 4, 4, pack( "V", length($raw) ) );
     $raw;
