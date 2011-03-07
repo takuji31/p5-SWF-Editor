@@ -5,7 +5,11 @@ githubmeta;
 
 # requires '';
 requires 'Mouse';
+requires 'Carp';
+requires 'Scalar::Util';
+requires 'Smart::Args';
 requires 'SWF::Parser';
+requires 'SWF::BinStream';
 
 tests 't/*.t';
 author_tests 'xt';
