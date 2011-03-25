@@ -5,8 +5,6 @@ extends qw/ SWF::Editor::Tag::DoAction /;
 use Scalar::Util qw/looks_like_number/;
 use Carp ();
 
-has vars => ( is => "rw", isa => "HashRef", predicate => "has_vars", default => sub { +{} } );
-
 our %ACTION_CODE = (
     Push        => "\x96",
     InitArray   => "\x42",
@@ -27,7 +25,7 @@ our %TYPE = (
 
 our $NULL = "\x00";
 
-has vars => ( is => "rw", isa => "HashRef", predicate => "has_vars", required => 1 );
+has vars => ( is => "rw", isa => "HashRef", required => 1 );
 
 sub BUILD {
     my $self = shift;
