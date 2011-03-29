@@ -3,12 +3,13 @@ use Mouse;
 use Smart::Args;
 
 use SWF::Editor::Utils::JPEGConverter;
+use SWF::Editor::Utils::Tag;
 use SWF::Editor::Utils::Header;
 use Compress::Zlib;
 
 extends qw/ SWF::Editor::Tag::DefineBits::JPEG2 /;
 
-has '+header' => ( default => create_long_header(SWF::Editor::Tag->tag_number('DefineBitsJPEG3')) );
+has '+header' => ( default => create_long_header(get_tag_number('DefineBitsJPEG3')) );
 
 sub create_from_jpeg_and_rgb_file {
     args my $class => 'ClassName',

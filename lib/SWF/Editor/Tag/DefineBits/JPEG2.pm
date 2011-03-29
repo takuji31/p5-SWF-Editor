@@ -4,10 +4,11 @@ use Smart::Args;
 
 use SWF::Editor::Utils::JPEGConverter;
 use SWF::Editor::Utils::Header;
+use SWF::Editor::Utils::Tag;
 
 extends qw/ SWF::Editor::Tag /;
 
-has '+header' => ( default => create_long_header(SWF::Editor::Tag->tag_number('DefineBitsJPEG2')) );
+has '+header' => ( default => create_long_header(get_tag_number('DefineBitsJPEG2')) );
 
 before get_binary => sub {
     my $self = shift;
