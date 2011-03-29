@@ -95,7 +95,7 @@ our $TAG_NUMBER = {
 
 sub compare_tag_number {
     my ( $tag_number, $tag_name ) = @_;
-    my $correct_tag_number = SWF::Editor->tag_number($tag_name);
+    my $correct_tag_number = get_tag_number($tag_name);
     return $correct_tag_number == $tag_number;
 }
 
