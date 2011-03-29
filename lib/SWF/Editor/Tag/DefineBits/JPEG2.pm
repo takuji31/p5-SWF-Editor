@@ -28,7 +28,9 @@ sub create_from_jpeg_file {
     my $data = do {
         local $/;
         open( my $fh, "<", $file ) or confess("Can't open jpeg image : ".$file);
-        <$fh>
+        my $d = <$fh>;
+        close $fh;
+        $d;
     };
 
     my $converter = SWF::Editor::Utils::JPEGConverter->new( data => $data );
