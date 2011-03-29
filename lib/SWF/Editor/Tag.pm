@@ -8,7 +8,6 @@ has data       => ( is => "rw" );
 has header     => ( is => "rw" );
 has type       => ( is => "rw" );
 has object_id  => ( is => "rw", isa => 'Int', lazy_build => 1 );
-has binary     => ( is => "rw", lazy_build => 1 );
 
 sub get_binary {
     my $self = shift;
