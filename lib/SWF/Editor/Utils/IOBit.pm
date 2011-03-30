@@ -7,7 +7,7 @@ use Mouse;
 
 =head1 NAME
 
-SWF::Editor::Utils::IOBit - Bitsteam IO utilyty
+SWF::Editor::Utils::IOBit - Bitsteam IO utility
 
 =head1 DESCRIPTION
 
