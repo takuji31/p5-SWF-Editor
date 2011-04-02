@@ -126,12 +126,12 @@ sub replace_tag {
     args_pos my $self,
              my $pos => { isa => 'Int' },
              my $tag => { isa => 'SWF::Editor::Tag' },
-             my $replace_object_id => { isa => 'Bool', default => 0};
+             my $replace_cid => { isa => 'Bool', default => 0};
 
     my $old_tag = $self->tags->[$pos];
     $self->tags->[$pos] = $tag;
-    if( $replace_object_id ) {
-        $tag->object_id($old_tag->object_id);
+    if( $replace_cid ) {
+        $tag->cid($old_tag->cid);
     }
     return $self;
 }

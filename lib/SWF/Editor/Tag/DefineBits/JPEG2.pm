@@ -13,10 +13,10 @@ has '+header' => ( default => create_long_header(get_tag_number('DefineBitsJPEG2
 before get_binary => sub {
     my $self = shift;
 
-    if ( $self->has_object_id ) {
+    if ( $self->has_cid ) {
         my $data = $self->data;
 
-        substr( $data, 0, 2, pack('v', $self->object_id) );
+        substr( $data, 0, 2, pack('v', $self->cid) );
 
         $self->data( $data );
     }
