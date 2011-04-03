@@ -48,7 +48,11 @@ sub add_byte_offset {
 
 sub add_bit_offset {
     my ($self, $val ) = @_;
-    $self->bit_offset( $self->bit_offset + $val );
+    $val += $self->bit_offset;
+    my $bit = $val % 8;
+    my $byte = ($val - $bit) / 8;
+    $self->bit_offset($bit);
+    $self->add_byte_offset($byte);
 }
 
 sub set_offset {
