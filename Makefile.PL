@@ -10,6 +10,7 @@ requires 'Scalar::Util';
 requires 'Smart::Args';
 requires 'SWF::Parser';
 requires 'SWF::BinStream';
+requires 'Exporter::Lite';
 
 tests 't/*.t';
 author_tests 'xt';

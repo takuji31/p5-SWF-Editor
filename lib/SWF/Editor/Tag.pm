@@ -7,7 +7,7 @@ use SWF::Editor::Utils::Header;
 has data       => ( is => "rw" );
 has header     => ( is => "rw" );
 has type       => ( is => "rw" );
-has object_id  => ( is => "rw", isa => 'Int', lazy_build => 1 );
+has cid  => ( is => "rw", isa => 'Int', lazy_build => 1 );
 
 sub get_binary {
     my $self = shift;
@@ -16,11 +16,15 @@ sub get_binary {
         pack("vVa*", $self->header, $self->length, $self->data);
     }
     else {
-        pack("va*",  $self->header,                $self->data);
+        my $header = $self->header;
+        my $length = length $self->data;
+        my $type   = $header >> 6;
+        $header = $type << 6 | $length;
+        pack("va*",  $header,                $self->data);
     }
 }
 
-sub _build_object_id {
+sub _build_cid {
     my $self = shift;
 
     unpack('v', substr($self->data, 0, 2));
