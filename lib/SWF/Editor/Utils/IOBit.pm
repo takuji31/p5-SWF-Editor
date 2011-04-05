@@ -292,7 +292,7 @@ sub need_bits_signed {
     }
     if ($n >= 0) {
         my $i;
-        for ( my $i = 0 ; $n ; $i++) {
+        for ( $i = 0 ; $n ; $i++) {
             $n >>= 1;
         }
         $ret = 1 + $i;
