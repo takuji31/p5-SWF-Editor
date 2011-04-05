@@ -6,7 +6,7 @@ use SWF::Editor::Utils::Header;
 
 has data       => ( is => "rw" );
 has header     => ( is => "rw" );
-has type       => ( is => "rw" );
+has type       => ( is => "rw", isa => 'Int', lazy_build => 1 );
 has cid  => ( is => "rw", isa => 'Int', lazy_build => 1 );
 
 sub get_binary {
@@ -28,6 +28,12 @@ sub _build_cid {
     my $self = shift;
 
     unpack('v', substr($self->data, 0, 2));
+}
+
+sub _build_type {
+    my $self = shift;
+
+    return $self->header >> 6;
 }
 
 sub length {
