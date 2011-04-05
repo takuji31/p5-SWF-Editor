@@ -41,5 +41,11 @@ sub length {
     return length $self->data;
 }
 
+sub clone {
+    my $self = shift;
+    my $class = ref($self);
+    $class->meta->clone_object($self);
+}
+
 __PACKAGE__->meta->make_immutable;
 

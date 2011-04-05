@@ -139,7 +139,11 @@ sub replace_tag {
 sub clone {
     my $self = shift;
     my $class = ref($self);
-    $class->meta->clone_object($self);
+    #Clone array ref
+    my $tags = [ map{ $_->clone } @{$self->tags} ];
+    my $clone = $class->meta->clone_object($self);
+    $clone->tags($tags);
+    return $clone;
 }
 
 sub get_binary {
