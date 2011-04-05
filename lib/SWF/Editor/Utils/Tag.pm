@@ -4,6 +4,7 @@ use warnings;
 
 use SWF::Editor::Tag;
 use Exporter::Lite;
+use Carp ();
 
 our @EXPORT = qw/
     compare_tag_number
@@ -101,14 +102,14 @@ sub compare_tag_number {
 
 sub get_tag_name {
     my $tag_number = shift;
-    confess("Tag name does not passed!") unless defined $tag_number;
+    Carp::confess("Tag name does not passed!") unless defined $tag_number;
     return {reverse %$TAG_NUMBER}->{$tag_number};
 }
 
 sub get_tag_number {
     my $tag_name = shift;
-    confess("Tag name does not passed!") unless defined $tag_name;
-    confess("Tag $tag_name does not exists!") unless defined $TAG_NUMBER->{$tag_name};
+    Carp::confess("Tag name does not passed!") unless defined $tag_name;
+    Carp::confess("Tag $tag_name does not exists!") unless defined $TAG_NUMBER->{$tag_name};
     return $TAG_NUMBER->{$tag_name};
 }
 
