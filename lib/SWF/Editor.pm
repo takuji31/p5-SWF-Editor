@@ -39,15 +39,11 @@ SWF::Editor is SWF file editor.
 =cut
 
 
-has file     => ( is => 'ro', isa => 'Str' );
-has raw_data => ( is => 'ro', isa => 'Value', lazy_build => 1 );
-
-has header => ( is => 'rw', isa => 'Str' );
-has tags   => (
-    is      => 'rw',
-    isa     => 'ArrayRef[SWF::Editor::Tag]',
-    default => sub { [] }
-);
+has compressed => (is => 'rw', isa => 'Bool', lazy_build => 1);
+has file       => (is => 'ro', isa => 'Str');
+has header     => (is => 'rw', isa => 'Str');
+has raw_data   => (is => 'ro', isa => 'Value', lazy_build => 1);
+has tags       => (is => 'rw',isa => 'ArrayRef[SWF::Editor::Tag]',default => sub { [] });
 
 sub BUILD {
     my $self = shift;
@@ -77,6 +73,11 @@ sub parse {
         my $parser = shift;
         my ( $signature, $version, $length, $xmin, $ymin, $xmax, $ymax, $framerate, $framecount ) = @_;
 
+        if ( substr($signature, 0, 1) eq 'C' ) {
+            $self->compressed(1);
+        } else {
+            $self->compressed(0);
+        }
         my $nbits = SWF::BinStream::Write::get_maxbits_of_sbits_list($xmin, $ymin, $xmax, $ymax);
         my $rect_bit = join("",
             substr(unpack("B*", pack("N", $nbits)), -5),

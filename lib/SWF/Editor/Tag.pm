@@ -17,10 +17,10 @@ sub get_binary {
     }
     else {
         my $header = $self->header;
-        my $length = length $self->data;
+        my $length = $self->length;
         my $type   = $header >> 6;
         $header = $type << 6 | $length;
-        pack("va*",  $header,                $self->data);
+        pack("va*", $header, $self->data);
     }
 }
 
