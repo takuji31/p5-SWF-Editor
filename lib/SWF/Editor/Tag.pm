@@ -38,7 +38,7 @@ sub _build_type {
 
 sub length {
     my $self = shift;
-    return length $self->data;
+    return CORE::length $self->data;
 }
 
 sub clone {

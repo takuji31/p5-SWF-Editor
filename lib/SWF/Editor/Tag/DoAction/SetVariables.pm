@@ -49,7 +49,7 @@ sub compile {
         push @vars, $self->compile_value($key), $self->compile_value($value);
         push @actions, $ACTION_CODE{SetVariable};
     }
-    my $compiled_vars = join '', @vars, @actions;
+    my $compiled_vars = join '', @vars, @actions, $NULL;
     $self->data($compiled_vars);
 }
 
