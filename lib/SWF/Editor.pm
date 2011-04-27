@@ -201,6 +201,8 @@ sub insert_tag_after_label {
         confess("Frame label $label does not exists!");
     }
 
+    $pos++;
+
     $self->insert_tag($pos => $insert_tag);
     return $self;
 
