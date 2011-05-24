@@ -21,8 +21,8 @@ sub get_binary {
     my $translate_y = px2twip($self->translate_y);
     
     #Calculate need signed bits
-    for my $bits ( ($self->translate_x, $self->translate_y) ) {
-        my $b = $iobit->need_bits_signed($bits * 20);
+    for my $bits ( ($translate_x, $translate_y) ) {
+        my $b = $iobit->need_bits_signed($bits);
         $need_bits = $b if $b >= $need_bits;
     }
     $iobit->put_ui_bits($need_bits,5);
@@ -33,7 +33,7 @@ sub get_binary {
 }
 
 
-sub px2twip {  
+sub px2twip {
     my $px = shift;
 
     return $px * 20;

@@ -224,8 +224,12 @@ sub alloc_data {
     }
     my $data_len = length $self->data;
     if ($data_len < $need_data_len) {
-        my $pack_len = $need_data_len - $data_len;
-        $self->add_data( pack( "a$pack_len", chr(0) ) );
+        my $pack_len = $need_data_len - $data_len - 1;
+        my $add_data = chr(0);
+        for ( my $i = 0; $i < $pack_len; $i++ ) {
+            $add_data .= "";
+        }
+        $self->add_data( $add_data );
     }
 }
 
@@ -259,7 +263,7 @@ sub put_si_bits {
     if ($value < 0) {
         my $msb = 1 << ($width - 1);
         my $bitmask = (2 * $msb) - 1;
-        $value = (-$value  - 1) ^ $bitmask;
+        $value = ( ( $value * -1 )  - 1) ^ $bitmask;
     }
     $self->put_ui_bits($value, $width);
 }

@@ -12,15 +12,13 @@ has cid  => ( is => "rw", isa => 'Int', lazy_build => 1 );
 sub get_binary {
     my $self = shift;
 
-    if ( is_long_header($self->header) ) {
-        pack("vVa*", $self->header, $self->length, $self->data);
+    my $length = $self->length;
+
+    if ( $length >= 63 ) {
+        pack("vVa*", create_long_header($self->type), $length, $self->data);
     }
     else {
-        my $header = $self->header;
-        my $length = $self->length;
-        my $type   = $header >> 6;
-        $header = $type << 6 | $length;
-        pack("va*", $header, $self->data);
+        pack("va*", create_header($self->type,$length), $self->data);
     }
 }
 
