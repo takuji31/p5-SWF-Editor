@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use Mouse;
 use Smart::Args;
+
+use Compress::Zlib;
 use SWF::Parser;
 use SWF::BinStream;
 
@@ -251,6 +253,26 @@ sub get_binary {
     my $raw = join("", $self->header, map { $_->get_binary } @tags);
     # calculate data length
     substr( $raw, 4, 4, pack( "V", length($raw) ) );
+    $raw;
+}
+
+sub get_compressed_binary {
+    my $self = shift;
+
+    my @tags = @{ $self->tags };
+
+    # rebuild data
+    my $raw = join("", $self->header, map { $_->get_binary } @tags);
+
+    # calculate data length
+    substr( $raw, 4, 4, pack( "V", length($raw) ) );
+
+    my $compress_target_data = substr( $raw, 8 );
+    my $not_compress_data    = substr( $raw, 0, 8);
+    $raw = $not_compress_data . compress($compress_target_data);
+    # update header signature
+    substr( $raw, 0, 1, 'C' );
+
     $raw;
 }
 
